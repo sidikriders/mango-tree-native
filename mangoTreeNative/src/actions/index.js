@@ -14,5 +14,11 @@ export const emulateGo = () => {
 }
 
 export const panenGo = () => {
-
+  return {
+    type: "HARVEST",
+    payload: {
+      good: Math.floor(Math.random()*10),
+      bad: Math.floor(Math.random()*10)
+    }
+  }
 }
