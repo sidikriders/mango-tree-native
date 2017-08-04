@@ -7,7 +7,6 @@ import store from './store'
 
 class mangoTreeNative extends React.Component {
   render() {
-    console.log('store', store);
     return (
       <Provider store={store}>
         <Navigation />

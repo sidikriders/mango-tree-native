@@ -17,6 +17,7 @@ class Navigation extends React.Component {
 }
 
 const mapStateToProps = (state) => {
+  console.log('Navigation state:', state);
   return {
     nav: state.nav
   }
