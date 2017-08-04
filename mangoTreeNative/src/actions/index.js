@@ -4,3 +4,12 @@ export const setUser = (str) => {
     payload: str
   }
 }
+
+export const emulateGo = () => {
+  let angkaTambahKematangan = Math.floor(Math.random()*10)
+  console.log('emulateGo:', angkaTambahKematangan);
+  return {
+    type: "EMULATE",
+    payload: angkaTambahKematangan
+  }
+}
