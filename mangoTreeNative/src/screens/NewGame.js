@@ -7,7 +7,8 @@ import {
   View
 } from 'react-native'
 import { connect } from 'react-redux'
-import { setUser, emulateGo } from '../actions'
+
+import { setUser, emulateGo, panenGo } from '../actions'
 import bijiDitanam from '../assets/0.png'
 import tumbuhTunas from '../assets/1.png'
 import pohonDewasa from '../assets/2.png'
@@ -21,6 +22,9 @@ class Login extends React.Component{
     let screen = Dimensions.get('window')
     return (
       <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        <Text style={{fontSize: 24}}>Harvested Fruit</Text>
+        <Text style={{fontSize: 24}}>Good : <Text style={{fontWeight: 'bold'}}>{this.props.ms.harvestedFruit.good}</Text></Text>
+        <Text style={{fontSize: 24}}>Bad : <Text style={{fontWeight: 'bold'}}>{this.props.ms.harvestedFruit.bad}</Text></Text>
         { this.props.ms.treeStat.age === 0 ?
           <View>
             <Text style={{fontSize: 24}}>This is <Text style={{fontWeight: 'bold'}}>{this.props.ms.currUser}</Text></Text>
@@ -45,8 +49,14 @@ class Login extends React.Component{
                 <Image source={pohonDewasa}/>
               </View>
         }
-        <Button title="Emulate"
-        onPress={()=> this.props.emulateKuy()}/>
+        <View>
+          <Button title="Emulate"
+          onPress={()=> this.props.emulateKuy()}/>
+          { this.props.ms.treeStat.maturity >= 50 ?
+            <Button title="harvest"
+            onPress={()=> this.props.panenKuy()}/> :
+          }
+        </View>
       </View>
     )
   }
@@ -61,7 +71,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     setUser: (str) => dispatch(setUser(str)),
-    emulateKuy: () => dispatch(emulateGo())
+    emulateKuy: () => dispatch(emulateGo()),
+    panenKuy: () => dispatch(panenGo())
   }
 }
 
