@@ -13,6 +13,7 @@ import bijiDitanam from '../assets/0.png'
 import tumbuhTunas from '../assets/1.png'
 import pohonDewasa from '../assets/2.png'
 import pohonBerbuah from '../assets/3.png'
+import pohonMati from '../assets/4.png'
 
 class Login extends React.Component{
   static navigationOptions = {
@@ -22,14 +23,15 @@ class Login extends React.Component{
     let screen = Dimensions.get('window')
     return (
       <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        <Button title="BACK!" onPress={() => this.props.navigation.navigate('Login')}/>
         <Text style={{fontSize: 24}}>Harvested Fruit</Text>
         <Text style={{fontSize: 24}}>Good : <Text style={{fontWeight: 'bold'}}>{this.props.ms.harvestedFruit.good}</Text></Text>
         <Text style={{fontSize: 24}}>Bad : <Text style={{fontWeight: 'bold'}}>{this.props.ms.harvestedFruit.bad}</Text></Text>
         { this.props.ms.treeStat.health <= 0 ?
             <View>
-              <Text style={{fontSize: 24}}>You just found<Text style={{fontWeight: 'bold'}}>{this.props.ms.currUser}</Text></Text>
+              <Text style={{fontSize: 24}}>You just found <Text style={{fontWeight: 'bold'}}>{this.props.ms.currUser}</Text></Text>
               <Text style={{fontSize: 24}}>He is Dead! :(</Text>
-              <Image source={bijiDitanam}/>
+              <Image source={pohonMati}/>
             </View> :
             this.props.ms.treeStat.age === 0 ?
             <View>
@@ -54,6 +56,14 @@ class Login extends React.Component{
                   <Text style={{fontSize: 24}}>He is now <Text style={{fontWeight: 'bold'}}>{this.props.ms.treeStat.age}</Text> year's old</Text>
                   <Image source={pohonDewasa}/>
                 </View>
+        }
+        {
+          this.props.ms.treeStat.health <= 0 ?
+          <View>
+            <Button title="Game Over!"
+            onPress={()=> this.props.emulateKuy()}/>
+          </View> :
+          <View></View>
         }
         <View>
           <Button title="Emulate"
